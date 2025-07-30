@@ -4,10 +4,10 @@ const authController = require('./../controllers/authController');
 
 const router = express.Router();
 
+// All booking routes require authentication
 router.use(authController.protect);
 
-router.get('/checkout-session/:tourId', bookingController.getCheckoutSession);
-
+// Only admins and lead-guides can access these routes
 router.use(authController.restrictTo('admin', 'lead-guide'));
 
 router
